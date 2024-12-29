@@ -2,17 +2,22 @@ import { useState } from 'react'
 import './App.css'
 
 function App() {
-  const [value, setvalue] = useState("");
-  
+  const [background, setbackground] = useState("#ffffff");
+  function handle(){
+    setbackground(getRandomHexColor());
+  }
+  function getRandomHexColor() { 
+    const hexCharacters = '0123456789ABCDEF'; 
+    let color = '#'; 
+    for (let i = 0; i < 6; i++) 
+      { color += hexCharacters[Math.floor(Math.random() * 16)]; 
+      } 
+    return color;
+    }
   return (
     <>
-      <div className='w-[100vw] h-[100vh] flex justify-center'>
-          <div className='w-[50%] h-[10%] bg-blue-900 rounded-lg flex justify-between m-8'>
-              <input type="text" className='m-3 w-[70%] p-3 border-none rounded-lg' placeholder='Enter ToDo'/>
-              <button className='bg-green-500 m-3 w-[25%] text-center rounded-lg font-mono text-2xl' >Add</button>
-          </div>
-
-
+      <div className='w-[100vw] h-[100vh] flex justify-center items-center' style={{backgroundColor:background}}>
+         <button className='bg-green-600 p-4 rounded-xl text-white hover:bg-green-700' onClick={handle}>Change BackGround</button>
       </div>
     </>
   )
